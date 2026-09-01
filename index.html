@@ -55,6 +55,11 @@
   .server h2 { margin: 0; font-size: 1.35rem; }
   .server p { margin: 0; color: var(--muted); }
 
+  .specs { display: grid; grid-template-columns: auto 1fr; gap: .25rem .75rem; margin: 0; font-size: .9rem; }
+  .specs dt { color: var(--muted); text-transform: uppercase; font-size: .75rem; letter-spacing: .05em; padding-top: .15rem; }
+  .specs dd { margin: 0; }
+  .specs dd small { display: block; color: var(--muted); }
+
   .block {
     width: 3.5rem; height: 3.5rem;
     border: 2px solid rgba(0,0,0,.4);
@@ -109,6 +114,10 @@
       <div class="block sky" aria-hidden="true"></div>
       <h2>Skyblock</h2>
       <p>A custom skyblock. You start on a tiny island with a tree, a chest, and a lot of empty air. Everything else you build, trade, or fall for.</p>
+      <dl class="specs">
+        <dt>Version</dt><dd>Minecraft 26.1.2 <small>Bedrock: latest release</small></dd>
+        <dt>Mods</dt><dd>None. Plain Minecraft works. <small>JourneyMap is optional. If you use it, run 6.0.6 or newer.</small></dd>
+      </dl>
       <div class="addr">
         <span class="tag">Java</span>
         <code>skyblock.mikaelmc.com</code>
@@ -126,6 +135,10 @@
       <div class="block grass" aria-hidden="true"></div>
       <h2>Friends</h2>
       <p>Regular survival for people I actually know. No grind, no gimmicks, just a world we share. Whitelisted, so ask me first.</p>
+      <dl class="specs">
+        <dt>Version</dt><dd>Minecraft 26.1.2 <small>Bedrock: latest release</small></dd>
+        <dt>Mods</dt><dd>None required. Plain Minecraft works. <small>Fabric extras the server supports: JourneyMap 6.0.6 or newer (older versions get kicked), AppleSkin, X to Xray.</small></dd>
+      </dl>
       <div class="addr">
         <span class="tag">Java</span>
         <code>mikaelmc.com</code>
