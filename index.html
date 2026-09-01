@@ -5,178 +5,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mikaelmc.com</title>
 <meta name="description" content="Two Minecraft servers: a custom skyblock and a survival world for friends. Java and Bedrock.">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <style>
   :root {
     --bg: #101418;
-    --card: #182028;
-    --edge: #2a3540;
     --text: #e8eef2;
     --muted: #9fb0bd;
+    --line: rgba(255, 255, 255, .1);
+    --well: rgba(255, 255, 255, .07);
+    --well-hover: rgba(255, 255, 255, .12);
     --sky: #6fc3ff;
     --grass: #7ed957;
     --dirt: #8a5a2b;
   }
+  html { color-scheme: dark; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
-  html, body { margin: 0; }
   body {
+    margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 18px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 2rem 1rem;
+    font-family: InterVariable, Inter, system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-size: 1.0625rem;
+    line-height: 1.6;
   }
-  main { width: 100%; max-width: 46rem; }
+  main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
 
-  h1 {
-    margin: 0 0 2rem;
-    font-size: clamp(2rem, 6vw, 3rem);
-    letter-spacing: -.02em;
+  h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; }
+  h1 { font-size: clamp(2rem, 6vw, 2.75rem); letter-spacing: -.02em; }
+  h2 { font-size: 1.375rem; letter-spacing: -.01em; }
+  h3 { font-size: 1em; }
+  p { margin: 0; text-wrap: pretty; }
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
   }
-  h1 span { display: inline-block; animation: bob 2.4s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(-4px); } }
 
-  .servers { display: grid; gap: 1.25rem; }
-  @media (min-width: 42rem) { .servers { grid-template-columns: 1fr 1fr; } }
-
-  .server {
-    background: var(--card);
-    border: 2px solid var(--edge);
-    border-radius: 6px;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-    transition: transform .15s ease;
-  }
-  .server:hover { transform: translateY(-3px); }
-  .server h2 { margin: 0; font-size: 1.35rem; }
-  .server p { margin: 0; color: var(--muted); }
-
-  .specs { display: grid; grid-template-columns: auto 1fr; gap: .25rem .75rem; margin: 0; font-size: .9rem; }
-  .specs dt { color: var(--muted); text-transform: uppercase; font-size: .75rem; letter-spacing: .05em; padding-top: .15rem; }
-  .specs dd { margin: 0; }
-  .specs dd small { display: block; color: var(--muted); }
+  .servers { display: grid; margin-top: 2rem; }
+  .server { display: flex; flex-direction: column; gap: 1rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+  .server:first-child { padding-top: 0; border-top: 0; }
+  .server:last-child { padding-bottom: 0; }
+  .server header { display: flex; align-items: center; gap: .75rem; }
+  .server p { color: var(--muted); }
 
   .block {
-    width: 3.5rem; height: 3.5rem;
-    border: 2px solid rgba(0,0,0,.4);
-    box-shadow: inset -6px -6px 0 rgba(0,0,0,.25), inset 6px 6px 0 rgba(255,255,255,.08);
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px solid rgba(0, 0, 0, .4);
+    box-shadow: inset -5px -5px 0 rgba(0, 0, 0, .25), inset 5px 5px 0 rgba(255, 255, 255, .08);
   }
   .block.grass { background: linear-gradient(var(--grass) 0 32%, var(--dirt) 32%); }
-  .block.sky   { background: linear-gradient(135deg, var(--sky), #2b7bbf); }
+  .block.sky { background: linear-gradient(135deg, var(--sky), #2b7bbf); }
 
-  .addr {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: .5rem;
-    background: var(--bg);
-    border: 1px solid var(--edge);
-    border-radius: 4px;
-    padding: .5rem .75rem;
-    font-size: .95rem;
-  }
-  .addr:first-of-type { margin-top: auto; }
-  .addr .tag { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
-  .addr code { user-select: all; color: var(--text); overflow-wrap: anywhere; }
-  .addr small { grid-column: 2; color: var(--muted); }
-  .addr button {
-    background: var(--edge);
-    color: var(--text);
-    border: 0;
-    border-radius: 3px;
-    padding: .3rem .6rem;
+  .addrs { margin: 0; }
+  .addr { padding: .875rem 0; border-top: 1px solid var(--line); }
+  .addr:first-child { padding-top: 0; border-top: 0; }
+  .addr:last-child { padding-bottom: 0; }
+  .addr dt { font-weight: 500; }
+  .addr dt span { color: var(--muted); font-weight: 400; }
+  .addr dt span::before { content: "·"; margin: 0 .5rem 0 .25rem; }
+  .addr dd { margin: .125rem 0 0; display: flex; align-items: center; gap: .75rem; }
+  .addr code { min-width: 0; overflow-wrap: anywhere; user-select: all; font-size: 1rem; }
+
+  .copy {
+    position: relative;
+    flex-shrink: 0;
+    margin-left: auto;
     font: inherit;
-    font-size: .85rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    padding: .25rem .75rem;
+    border: 0;
+    border-radius: .375rem;
+    background: var(--well);
+    color: var(--text);
     cursor: pointer;
   }
-  .addr button:hover { background: #364554; }
+  .copy:hover { background: var(--well-hover); }
+  .copy:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  @media (pointer: coarse) {
+    .copy::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: max(100%, 3rem);
+      height: max(100%, 3rem);
+      translate: -50% -50%;
+    }
+  }
 
-  .howto { margin-top: 2.5rem; }
-  .howto h2 { font-size: 1.2rem; margin: 0 0 1rem; }
-  .howto ol { margin: .25rem 0 0; padding-left: 1.4rem; color: var(--muted); }
-  .howto h3 { margin: 1rem 0 0; font-size: 1rem; }
-  .howto li { margin: .15rem 0; }
+  .howto { display: grid; gap: 1.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .steps { display: grid; gap: .5rem; }
+  .steps ol { display: grid; gap: .25rem; margin: 0; padding-left: 1.5rem; color: var(--muted); }
+  .note { color: var(--muted); }
 
-  footer { margin-top: 2.5rem; color: var(--muted); font-size: .9rem; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); }
+
+  @media (min-width: 40rem) {
+    body { font-size: 1rem; }
+    .addr dt { font-size: .9375rem; }
+    .copy { font-size: .875rem; line-height: 1.25rem; padding: .25rem .625rem; }
+  }
+  @media (min-width: 42rem) {
+    .servers { grid-template-columns: 1fr 1fr; }
+    .server { padding: 0; border-top: 0; }
+    .server:first-child { padding-right: 2.5rem; }
+    .server:last-child { padding-left: 2.5rem; border-left: 1px solid var(--line); }
+  }
 </style>
 </head>
 <body>
 <main>
-  <h1><span>⛏</span> mikaelmc.com</h1>
+  <h1>mikaelmc.com</h1>
 
-  <section class="servers">
+  <section class="servers" aria-label="Servers">
     <article class="server">
-      <div class="block sky" aria-hidden="true"></div>
-      <h2>Skyblock</h2>
+      <header>
+        <div class="block sky" aria-hidden="true"></div>
+        <h2>Skyblock</h2>
+      </header>
       <p>A custom skyblock. You start on a tiny island with a tree, a chest, and a lot of empty air. Everything else you build, trade, or fall for.</p>
-      <dl class="specs">
-        <dt>Version</dt><dd>Minecraft 26.1.2 <small>Bedrock: latest release</small></dd>
+      <dl class="addrs">
+        <div class="addr">
+          <dt>Java <span>Minecraft 26.1.2</span></dt>
+          <dd><code>skyblock.mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
+        </div>
+        <div class="addr">
+          <dt>Bedrock <span>Port 19133</span></dt>
+          <dd><code>skyblock.mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
+        </div>
       </dl>
-      <div class="addr">
-        <span class="tag">Java</span>
-        <code>skyblock.mikaelmc.com</code>
-        <button type="button" data-copy="skyblock.mikaelmc.com">copy</button>
-      </div>
-      <div class="addr">
-        <span class="tag">Bedrock</span>
-        <code>skyblock.mikaelmc.com</code>
-        <button type="button" data-copy="skyblock.mikaelmc.com">copy</button>
-        <small>port 19133</small>
-      </div>
     </article>
 
     <article class="server">
-      <div class="block grass" aria-hidden="true"></div>
-      <h2>Friends</h2>
+      <header>
+        <div class="block grass" aria-hidden="true"></div>
+        <h2>Friends</h2>
+      </header>
       <p>Regular survival for people I actually know. No grind, no gimmicks, just a world we share.</p>
-      <dl class="specs">
-        <dt>Version</dt><dd>Minecraft 26.1.2 <small>Bedrock: latest release</small></dd>
+      <dl class="addrs">
+        <div class="addr">
+          <dt>Java <span>Minecraft 26.1.2</span></dt>
+          <dd><code>mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
+        </div>
+        <div class="addr">
+          <dt>Bedrock <span>Port 19132</span></dt>
+          <dd><code>play.mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
+        </div>
       </dl>
-      <div class="addr">
-        <span class="tag">Java</span>
-        <code>mikaelmc.com</code>
-        <button type="button" data-copy="mikaelmc.com">copy</button>
-      </div>
-      <div class="addr">
-        <span class="tag">Bedrock</span>
-        <code>play.mikaelmc.com</code>
-        <button type="button" data-copy="play.mikaelmc.com">copy</button>
-        <small>port 19132</small>
-      </div>
     </article>
   </section>
 
   <section class="howto">
     <h2>How to join</h2>
 
-    <h3>Java Edition</h3>
-    <ol>
-      <li>Multiplayer, then Add Server.</li>
-      <li>Paste the Java address. Leave the port alone.</li>
-      <li>Done, then double-click the server.</li>
-    </ol>
+    <div class="steps">
+      <h3>Java Edition</h3>
+      <ol>
+        <li>Multiplayer, then Add Server.</li>
+        <li>Paste the Java address. Leave the port alone.</li>
+        <li>Done, then double-click the server.</li>
+      </ol>
+    </div>
 
-    <h3>Bedrock Edition (phone, Windows, tablet)</h3>
-    <ol>
-      <li>Play, then the Servers tab, then scroll down to Add Server.</li>
-      <li>Paste the Bedrock address and type the port listed above.</li>
-      <li>Save, then tap it to join.</li>
-    </ol>
-    <p style="color: var(--muted); margin-top: 1rem;">On Xbox, PlayStation, or Switch, Bedrock hides the Add Server button. It is still possible. Ask me.</p>
+    <div class="steps">
+      <h3>Bedrock Edition (phone, Windows, tablet)</h3>
+      <ol>
+        <li>Play, then the Servers tab, then scroll down to Add Server.</li>
+        <li>Paste the Bedrock address and type the port listed above.</li>
+        <li>Save, then tap it to join.</li>
+      </ol>
+    </div>
+
+    <p class="note">Bedrock runs the latest release. On Xbox, PlayStation, or Switch it hides the Add Server button. It is still possible. Ask me.</p>
   </section>
 
   <footer>If something is down, it is because I broke it. Give it a minute.</footer>
 </main>
 
 <script>
-  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    var code = btn.previousElementSibling;
     btn.addEventListener('click', function () {
-      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
-        btn.textContent = 'copied';
-        setTimeout(function () { btn.textContent = 'copy'; }, 1200);
+      navigator.clipboard.writeText(code.textContent).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+      }, function () {
+        getSelection().selectAllChildren(code);
       });
     });
   });
