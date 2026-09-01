@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mikaelmc.com</title>
+<meta name="description" content="Two Minecraft servers: a custom skyblock and a survival world for friends. Java and Bedrock.">
+<style>
+  :root {
+    --bg: #101418;
+    --card: #182028;
+    --edge: #2a3540;
+    --text: #e8eef2;
+    --muted: #9fb0bd;
+    --sky: #6fc3ff;
+    --grass: #7ed957;
+    --dirt: #8a5a2b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 18px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1rem;
+  }
+  main { width: 100%; max-width: 46rem; }
+
+  h1 {
+    margin: 0 0 .25rem;
+    font-size: clamp(2rem, 6vw, 3rem);
+    letter-spacing: -.02em;
+  }
+  h1 span { display: inline-block; animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(-4px); } }
+  .lead { color: var(--muted); margin: 0 0 2rem; }
+
+  .servers { display: grid; gap: 1.25rem; }
+  @media (min-width: 42rem) { .servers { grid-template-columns: 1fr 1fr; } }
+
+  .server {
+    background: var(--card);
+    border: 2px solid var(--edge);
+    border-radius: 6px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    transition: transform .15s ease;
+  }
+  .server:hover { transform: translateY(-3px); }
+  .server h2 { margin: 0; font-size: 1.35rem; }
+  .server p { margin: 0; color: var(--muted); }
+
+  .block {
+    width: 3.5rem; height: 3.5rem;
+    border: 2px solid rgba(0,0,0,.4);
+    box-shadow: inset -6px -6px 0 rgba(0,0,0,.25), inset 6px 6px 0 rgba(255,255,255,.08);
+  }
+  .block.grass { background: linear-gradient(var(--grass) 0 32%, var(--dirt) 32%); }
+  .block.sky   { background: linear-gradient(135deg, var(--sky), #2b7bbf); }
+
+  .addr {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: .5rem;
+    background: var(--bg);
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: .5rem .75rem;
+    font-size: .95rem;
+  }
+  .addr:first-of-type { margin-top: auto; }
+  .addr .tag { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+  .addr code { user-select: all; color: var(--text); overflow-wrap: anywhere; }
+  .addr small { grid-column: 2; color: var(--muted); }
+  .addr button {
+    background: var(--edge);
+    color: var(--text);
+    border: 0;
+    border-radius: 3px;
+    padding: .3rem .6rem;
+    font: inherit;
+    font-size: .85rem;
+    cursor: pointer;
+  }
+  .addr button:hover { background: #364554; }
+
+  .howto { margin-top: 2.5rem; }
+  .howto h2 { font-size: 1.2rem; margin: 0 0 1rem; }
+  .howto ol { margin: .25rem 0 0; padding-left: 1.4rem; color: var(--muted); }
+  .howto h3 { margin: 1rem 0 0; font-size: 1rem; }
+  .howto li { margin: .15rem 0; }
+
+  footer { margin-top: 2.5rem; color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><span>⛏</span> mikaelmc.com</h1>
+  <p class="lead">Two servers. Java and Bedrock both welcome.</p>
+
+  <section class="servers">
+    <article class="server">
+      <div class="block sky" aria-hidden="true"></div>
+      <h2>Skyblock</h2>
+      <p>A custom skyblock. You start on a tiny island with a tree, a chest, and a lot of empty air. Everything else you build, trade, or fall for.</p>
+      <div class="addr">
+        <span class="tag">Java</span>
+        <code>skyblock.mikaelmc.com</code>
+        <button type="button" data-copy="skyblock.mikaelmc.com">copy</button>
+      </div>
+      <div class="addr">
+        <span class="tag">Bedrock</span>
+        <code>skyblock.mikaelmc.com</code>
+        <button type="button" data-copy="skyblock.mikaelmc.com">copy</button>
+        <small>port 19133</small>
+      </div>
+    </article>
+
+    <article class="server">
+      <div class="block grass" aria-hidden="true"></div>
+      <h2>Friends</h2>
+      <p>Regular survival for people I actually know. No grind, no gimmicks, just a world we share. Whitelisted, so ask me first.</p>
+      <div class="addr">
+        <span class="tag">Java</span>
+        <code>mikaelmc.com</code>
+        <button type="button" data-copy="mikaelmc.com">copy</button>
+      </div>
+      <div class="addr">
+        <span class="tag">Bedrock</span>
+        <code>play.mikaelmc.com</code>
+        <button type="button" data-copy="play.mikaelmc.com">copy</button>
+        <small>port 19132</small>
+      </div>
+    </article>
+  </section>
+
+  <section class="howto">
+    <h2>How to join</h2>
+
+    <h3>Java Edition</h3>
+    <ol>
+      <li>Multiplayer, then Add Server.</li>
+      <li>Paste the Java address. Leave the port alone.</li>
+      <li>Done, then double-click the server.</li>
+    </ol>
+
+    <h3>Bedrock Edition (phone, Windows, tablet)</h3>
+    <ol>
+      <li>Play, then the Servers tab, then scroll down to Add Server.</li>
+      <li>Paste the Bedrock address and type the port listed above.</li>
+      <li>Save, then tap it to join.</li>
+    </ol>
+    <p style="color: var(--muted); margin-top: 1rem;">On Xbox, PlayStation, or Switch, Bedrock hides the Add Server button. It is still possible. Ask me.</p>
+  </section>
+
+  <footer>If something is down, it is because I broke it. Give it a minute.</footer>
+</main>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'copied';
+        setTimeout(function () { btn.textContent = 'copy'; }, 1200);
+      });
+    });
+  });
+</script>
+</body>
+</html>
