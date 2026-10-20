@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>mikaelmc.com</title>
-<meta name="description" content="Two Minecraft servers, a skyblock and a survival world for friends. Java and Bedrock both work.">
+<meta name="description" content="Three Minecraft servers: a skyblock and two survival worlds for friends. Java and Bedrock both work.">
 <link rel="preconnect" href="https://rsms.me/">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 <style>
@@ -18,6 +18,7 @@
     --sky: #6fc3ff;
     --grass: #7ed957;
     --dirt: #8a5a2b;
+    --door: #e0a63a;
   }
   html { color-scheme: dark; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
@@ -30,7 +31,7 @@
     font-size: 1.0625rem;
     line-height: 1.6;
   }
-  main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+  main { max-width: 64rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
 
   h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; }
   h1 { font-size: clamp(2rem, 6vw, 2.75rem); letter-spacing: -.02em; }
@@ -57,6 +58,7 @@
     box-shadow: inset -5px -5px 0 rgba(0, 0, 0, .25), inset 5px 5px 0 rgba(255, 255, 255, .08);
   }
   .block.grass { background: linear-gradient(var(--grass) 0 32%, var(--dirt) 32%); }
+  .block.shire { background: radial-gradient(circle at 50% 100%, var(--door) 0 30%, transparent 31%), linear-gradient(var(--grass) 0 32%, #5fae3e 32%); }
   .block.sky { background: linear-gradient(135deg, var(--sky), #2b7bbf); }
 
   .addrs { margin: 0; }
@@ -98,6 +100,7 @@
     }
   }
 
+  .howto, footer { max-width: 46rem; }
   .howto { display: grid; gap: 1.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
   .steps { display: grid; gap: .5rem; }
   .steps ol { display: grid; gap: .25rem; margin: 0; padding-left: 1.5rem; color: var(--muted); }
@@ -110,11 +113,11 @@
     .addr dt { font-size: .9375rem; }
     .copy { font-size: .875rem; line-height: 1.25rem; padding: .25rem .625rem; }
   }
-  @media (min-width: 42rem) {
-    .servers { grid-template-columns: 1fr 1fr; }
-    .server { padding: 0; border-top: 0; }
-    .server:first-child { padding-right: 2.5rem; }
-    .server:last-child { padding-left: 2.5rem; border-left: 1px solid var(--line); }
+  @media (min-width: 60rem) {
+    .servers { grid-template-columns: repeat(3, 1fr); }
+    .server { padding: 0 2rem; border-top: 0; border-left: 1px solid var(--line); }
+    .server:first-child { padding-left: 0; border-left: 0; }
+    .server:last-child { padding-right: 0; }
   }
 </style>
 </head>
@@ -155,6 +158,24 @@
         <div class="addr">
           <dt>Bedrock <span>Port 19132</span></dt>
           <dd><code>play.mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="server">
+      <header>
+        <div class="block shire" aria-hidden="true"></div>
+        <h2>The Shire</h2>
+      </header>
+      <p>A fresh survival world with voice chat. It is whitelisted, so ask me if you want in.</p>
+      <dl class="addrs">
+        <div class="addr">
+          <dt>Java <span>Minecraft 26.1.2</span></dt>
+          <dd><code>shire.mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
+        </div>
+        <div class="addr">
+          <dt>Bedrock <span>Port 19134</span></dt>
+          <dd><code>shire.mikaelmc.com</code><button type="button" class="copy">Copy</button></dd>
         </div>
       </dl>
     </article>
